@@ -1,34 +1,28 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 
-const RenderedSquare = styled.div`
+const BoardSquare = styled.div`
     background: #fff;
-    border: 1px solid #999;
-    float: left;
-    font-size: 24px;
     font-weight: bold;
-    line-height: 34px;
-    height: 34px;
-    margin-right: -1px;
-    margin-top: -1px;
+    width: 100px;
+    height: 100px;
     padding: 0;
     text-align: center;
-    width: 34px;
+    outline: 2px solid black;
 `;
 
-const BoardRow = styled.div`
-    &:after {
-        clear: both;
-        content: "";
-        display: table;
-    }
+const BoardGrid = styled.div`
+    display: grid;
+    width: 80%;
+    height: 80%;
+    grid-template-columns: repeat(19, auto);
 `;
 
 function Square(props) {
     return (
-        <RenderedSquare>
-            X
-        </RenderedSquare>
+        <BoardSquare>
+            x
+        </BoardSquare>
     );
 }
 
@@ -50,17 +44,13 @@ export default class Board extends Component {
 
     render() {
         return (
-            <div>
+            <BoardGrid>
                 {
-                    [...Array(this.boardY)].map((_, i) => (
-                        <BoardRow key={i}>
-                            {
-                                [...Array(this.boardX)].map((_, j) => this.renderSquare(3 * i + j))
-                            }
-                        </BoardRow>
+                    [...Array(this.boardY)].map((_, i) => (  
+                        [...Array(this.boardX)].map((_, j) => this.renderSquare(3 * i + j))  
                     ))
                 }
-            </div>
+            </BoardGrid>
         )
     }
 }
