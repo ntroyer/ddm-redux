@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 
+// todo - less janky way to handle outline going over border...
 const BoardSquare = styled.div`
     background: #fff;
     font-weight: bold;
@@ -9,19 +10,28 @@ const BoardSquare = styled.div`
     padding: 0;
     text-align: center;
     outline: 2px solid black;
+
+    &:hover {
+        border-color: blue;
+        border-style: solid;
+        border-top-width: 5px;
+        border-left-width: 5px;
+        border-right-width: 7px;
+        border-bottom-width: 7px;
+    }
 `;
 
 const BoardGrid = styled.div`
     display: grid;
-    width: 80%;
-    height: 80%;
+    width: 1900px; // todo - define default global variables for the css...
+    height: 1900px;
     grid-template-columns: repeat(19, auto);
 `;
 
 function Square(props) {
     return (
         <BoardSquare>
-            x
+            {props.row}, {props.col}
         </BoardSquare>
     );
 }
@@ -34,10 +44,11 @@ export default class Board extends Component {
         this.boardY = 19; // todo - define default global variables
     }
 
-    renderSquare(i) {
+    renderSquare(row, col) {
         return (
             <Square 
-                value={i}
+                row={row}
+                col={col}
             />
         );
     }
@@ -46,8 +57,8 @@ export default class Board extends Component {
         return (
             <BoardGrid>
                 {
-                    [...Array(this.boardY)].map((_, i) => (  
-                        [...Array(this.boardX)].map((_, j) => this.renderSquare(3 * i + j))  
+                    [...Array(this.boardX)].map((_, i) => (  
+                        [...Array(this.boardY)].map((_, j) => this.renderSquare(i, j))  
                     ))
                 }
             </BoardGrid>
