@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import Board from "./board/board.component";
 import styled from 'styled-components';
+
+import Board from "./board/board.component";
+import PlayerTest from "./debug/player-test.component";
 
 const Game = styled.div`
     display: flex;
@@ -15,7 +17,11 @@ export default class NewGame extends Component {
     render() {
         return (
             <Game>
-                <Board />
+                <PlayerTest />
+                <Board 
+                    boardX={19}
+                    boardY={19}
+                />
             </Game>
         )
     }
