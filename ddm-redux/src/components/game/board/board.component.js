@@ -4,7 +4,7 @@ import Square from './square.component';
 
 const BoardGrid = styled.div`
     display: grid;
-    width: ${props => (props.boardX)}00px; // todo - define default global variables for the css...
+    width: ${props => (props.boardX)}00px;
     height: ${props => (props.boardY)}00px;
     grid-template-columns: repeat(${props => (props.boardX)}, auto);
 `;
@@ -13,10 +13,10 @@ export default class Board extends Component {
     constructor(props) {
         super(props);
 
-        this.state = {
+        /*this.state = {
             boardX: props.boardX,
             boardY: props.boardY
-        }
+        }*/
     }
 
     renderSquare(row, col) {
@@ -24,16 +24,18 @@ export default class Board extends Component {
             <Square 
                 row={row}
                 col={col}
+                currentPlayer={this.props.currentPlayer}
+                currentPlayerColor={this.props.currentPlayerColor}
             />
         );
     }
 
     render() {
         return (
-            <BoardGrid boardX={this.state.boardX} boardY={this.state.boardY}>
+            <BoardGrid boardX={this.props.boardX} boardY={this.props.boardY}>
                 {
-                    [...Array(this.state.boardY)].map((_, i) => (  
-                        [...Array(this.state.boardX)].map((_, j) => this.renderSquare(i, j))  
+                    [...Array(this.props.boardY)].map((_, i) => (  
+                        [...Array(this.props.boardX)].map((_, j) => this.renderSquare(i, j))  
                     ))
                 }
             </BoardGrid>

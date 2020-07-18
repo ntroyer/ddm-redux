@@ -12,7 +12,7 @@ const BoardSquare = styled.div`
     outline: 2px solid black;
 
     &:hover {
-        border-color: blue;
+        border-color: ${props => (props.currentPlayerColor ? props.currentPlayerColor : "red")};
         border-style: solid;
         border-top-width: 5px;
         border-left-width: 5px;
@@ -26,10 +26,7 @@ export default class Square extends Component {
     constructor(props) {
         super(props);
 
-        this.state = {
-            row: props.row,
-            col: props.col
-        }
+        console.log('check out my props', props);
     }
 
     componentWillMount() {
@@ -40,10 +37,16 @@ export default class Square extends Component {
         console.log('generated new square!');
     }
 
+    setPlayer(player) {
+        this.setState(state => ({
+            controlledBy: player
+        }));
+    }
+
     render() {
         return(
-            <BoardSquare>
-                {this.state.row}, {this.state.col}
+            <BoardSquare currentPlayerColor={this.props.currentPlayerColor}>
+                {this.props.row}, {this.props.col}
             </BoardSquare>
         )
     }

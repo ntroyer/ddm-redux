@@ -12,13 +12,31 @@ const Game = styled.div`
 export default class NewGame extends Component {
     constructor(props) {
         super(props);
+
+        // todo - look into sharing objects between components so we can do something like currentPlayer.position and currentPlayer.color
+        this.state = {
+            currentPlayer: 1,
+            currentPlayerColor: "blue"
+        }
+
+        this.changePlayer = this.changePlayer.bind(this);
+    }
+
+    changePlayer(player, color) {
+        console.log('changing player...', color);
+        this.setState(state => ({
+            currentPlayer: player,
+            currentPlayerColor: color
+        }));
     }
 
     render() {
         return (
             <Game>
-                <PlayerTest />
+                <PlayerTest currentPlayer={this.state.currentPlayer} onPlayerChange={this.changePlayer} />
                 <Board 
+                    currentPlayer={this.state.currentPlayer}
+                    currentPlayerColor={this.state.currentPlayerColor}
                     boardX={19}
                     boardY={19}
                 />
