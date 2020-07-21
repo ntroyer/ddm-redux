@@ -23,7 +23,6 @@ export default class NewGame extends Component {
     }
 
     changePlayer(player, color) {
-        console.log('changing player...', color);
         this.setState(state => ({
             currentPlayer: player,
             currentPlayerColor: color

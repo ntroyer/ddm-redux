@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 
-// todo - less janky way to handle outline going over border...
 const BoardSquare = styled.div`
     background: #fff;
     font-weight: bold;
@@ -11,9 +10,9 @@ const BoardSquare = styled.div`
     text-align: center;
     outline: 2px solid black;
 
-    &:hover {
+    &.is-being-checked {
         border-color: ${props => (props.currentPlayerColor ? props.currentPlayerColor : "red")};
-        border-style: solid;
+        border-style: dotted;
         border-top-width: 5px;
         border-left-width: 5px;
         border-right-width: 7px;
@@ -25,27 +24,17 @@ const BoardSquare = styled.div`
 export default class Square extends Component {
     constructor(props) {
         super(props);
-
-        console.log('check out my props', props);
     }
 
-    componentWillMount() {
-        console.log('generating new square...');
-    }
-
-    componentDidMount() {
-        console.log('generated new square!');
-    }
-
-    setPlayer(player) {
-        this.setState(state => ({
-            controlledBy: player
-        }));
-    }
 
     render() {
         return(
-            <BoardSquare currentPlayerColor={this.props.currentPlayerColor}>
+            <BoardSquare
+                currentPlayerColor={this.props.currentPlayerColor}
+                isBeingChecked={this.props.isBeingChecked}
+                className={this.props.isBeingChecked ? "is-being-checked" : ""}
+                onMouseEnter={() => this.props.onSetCurrentCenter(this.props.row, this.props.col)}
+                >
                 {this.props.row}, {this.props.col}
             </BoardSquare>
         )
