@@ -13,13 +13,16 @@ export default class NewGame extends Component {
     constructor(props) {
         super(props);
 
-        // todo - look into sharing objects between components so we can do something like currentPlayer.position and currentPlayer.color
         this.state = {
             currentPlayer: 1,
-            currentPlayerColor: "blue"
+            currentPlayerColor: "blue",
+            currentPolyo: [
+                [-1, 0], [-1, -1], [1, 0], [0, 1], [0, 2]
+            ]
         }
 
         this.changePlayer = this.changePlayer.bind(this);
+        this.changePolyo = this.changePolyo.bind(this);
     }
 
     changePlayer(player, color) {
@@ -29,13 +32,25 @@ export default class NewGame extends Component {
         }));
     }
 
+    changePolyo(polyo) {
+        this.setState(state => ({
+            currentPolyo: polyo
+        }));
+    }
+
     render() {
         return (
             <Game>
-                <PlayerTest currentPlayer={this.state.currentPlayer} onPlayerChange={this.changePlayer} />
+                <PlayerTest 
+                    currentPlayer={this.state.currentPlayer} 
+                    currentPolyo={this.state.currentPolyo}
+                    onPlayerChange={this.changePlayer} 
+                    onPolyoChange={this.changePolyo}
+                />
                 <Board 
                     currentPlayer={this.state.currentPlayer}
                     currentPlayerColor={this.state.currentPlayerColor}
+                    currentPolyo={this.state.currentPolyo}
                     boardX={19}
                     boardY={19}
                 />

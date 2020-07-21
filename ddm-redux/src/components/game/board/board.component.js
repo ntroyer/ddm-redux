@@ -14,9 +14,6 @@ export default class Board extends Component {
         super(props);
 
         this.state = {
-            currentPolyo: [
-                [-1, 0], [-1, -1], [1, 0], [0, 1], [0, 2]
-            ],
             currentComputedPolyo: [-1, -1]
         }
 
@@ -35,7 +32,7 @@ export default class Board extends Component {
     }
 
     computePolyoCoords(row, col) {
-        return [[row, col]].concat(this.state.currentPolyo.map((value) => {
+        return [[row, col]].concat(this.props.currentPolyo.map((value) => {
             return [(row + value[0]), (col + value[1])]
         }));
     }
