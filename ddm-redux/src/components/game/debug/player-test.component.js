@@ -84,9 +84,9 @@ export default class PlayerTest extends Component {
                 <button onClick={() => this.props.onPlayerChange(3, "green")}>Player 3</button>
                 <button onClick={() => this.props.onPlayerChange(4, "purple")}>Player 4</button>
                 <div>
-                    Polyominal Controls
+                    Polyomino Controls
                 </div>
-                <button onClick={this.getTestPolyo}>Get Test Polyominal</button>
+                <button onClick={this.getTestPolyo}>Get Test Polyomino</button>
                 <MdRotateLeft data-tip="Rotate Counterclockwise" onClick={this.rotateLeft} />
                 <MdRotateRight data-tip="Rotate Clockwise" onClick={this.rotateRight} />
                 <FlipX data-tip="Flip Horizontally" onClick={this.flipX} />
