@@ -68,6 +68,10 @@ export default class PlayerTest extends Component {
         });
         this.props.onPolyoChange(newPolyo);
     }
+
+    getTestPolyo() {
+        
+    }
  
     render() {
         return (
@@ -82,6 +86,7 @@ export default class PlayerTest extends Component {
                 <div>
                     Polyominal Controls
                 </div>
+                <button onClick={this.getTestPolyo}>Get Test Polyominal</button>
                 <MdRotateLeft data-tip="Rotate Counterclockwise" onClick={this.rotateLeft} />
                 <MdRotateRight data-tip="Rotate Clockwise" onClick={this.rotateRight} />
                 <FlipX data-tip="Flip Horizontally" onClick={this.flipX} />

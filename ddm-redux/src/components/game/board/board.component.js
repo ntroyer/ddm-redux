@@ -10,24 +10,35 @@ const BoardGrid = styled.div`
 `;
 
 export default class Board extends Component {
+    // as a general rule of thumb, if you are inclined to add a variable to a square, add it to the board instead
+    // todo - add an array that keeps track of what squares each player is assigned to.
     constructor(props) {
         super(props);
 
         this.state = {
-            currentComputedPolyo: [-1, -1]
+            currentComputedPolyo: [-1, -1],
+            playerSquares: []
         }
 
         this.setCurrentCenter = this.setCurrentCenter.bind(this);
     }
 
     setCurrentCenter(row, col) {
-        console.log('this is the current center...', row, col);
-
-        // todo - add currentCenter to state?
         // todo - when the mouse comes off the grid at its edges, the polyo should be removed
 
         this.setState(state => ({
             currentComputedPolyo: this.computePolyoCoords(row, col)
+        }));
+    }
+
+    assignSquaresToPlayer(player) {
+        console.log('we are now assigning squares for player ', player);
+        let currentPlayerSquares = this.state.playerSquares;
+        this.state.currentComputedPolyo.map((item) => {
+            currentPlayerSquares[item[0] + ',' + item[1]] = player;
+        });
+        this.setState(state => ({
+            playerSquares: currentPlayerSquares
         }));
     }
 
@@ -37,22 +48,35 @@ export default class Board extends Component {
         }));
     }
 
-    renderSquare(row, col) {
-        let isBeingChecked = false;
+    getSquareAssignment(row, col) {
+        let rowColKey = row + ',' + col;
+
+        if (this.state.playerSquares[rowColKey] && this.state.playerSquares[rowColKey] !== 'undefined') {
+            return this.state.playerSquares[rowColKey];
+        }
+
+        return 0;
+    }
+
+    isSquareBeingChecked(row, col) {
         let stringifiedCoords = JSON.stringify([row, col]);
 
         if (this.state.currentComputedPolyo.some(item => JSON.stringify(item) === stringifiedCoords)) {
-            isBeingChecked = true;
+            return true;
         }
+        return false;
+    }
 
+    renderSquare(row, col) {
         return (
             <Square 
                 row={row}
                 col={col}
                 currentPlayer={this.props.currentPlayer}
-                currentPlayerColor={this.props.currentPlayerColor}
-                isBeingChecked={isBeingChecked}
+                assignedPlayer={this.getSquareAssignment(row, col)}
+                isBeingChecked={this.isSquareBeingChecked(row, col)}
                 onSetCurrentCenter={() => this.setCurrentCenter(row, col)}
+                assignSquaresToPlayer={() => this.assignSquaresToPlayer(this.props.currentPlayer)}
             />
         );
     }
