@@ -5,7 +5,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Navbar from "./components/navbar.component";
 import CreateUser from "./components/create-user.component";
 import NewGame from "./components/game/new-game.component";
-import PolyominoTester from "./components/game/board/polyomino-tester.component";
 
 function App() {
   return (
@@ -14,7 +13,6 @@ function App() {
       <br/>
       <Route path="/newgame" component={NewGame} />
       <Route path="/user" component={CreateUser} />
-      <Route path="/polytest" component={PolyominoTester} />
     </Router>
   );
 }

@@ -12,7 +12,7 @@ const PreviewSquare = styled.div`
 
     &.is-center {
         border-color: red;
-        border-style: dotted;
+        border-style: dashed;
         border-top-width: 5px;
         border-left-width: 5px;
         border-right-width: 5px;
