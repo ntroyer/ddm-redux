@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import { MdRotateLeft, MdRotateRight, MdFlip } from 'react-icons/md';
 import ReactTooltip from "react-tooltip";
+import PolyominoPreview from './polyomino-preview.component';
 
 const FlipX = styled(MdFlip)`
     rotate: 90deg;
@@ -10,10 +11,6 @@ const FlipX = styled(MdFlip)`
 export default class PlayerTest extends Component {
     constructor(props) {
         super(props);
-
-        this.state = {
-            currentPlayer: props.currentPlayer
-        }
 
         this.rotateLeft = this.rotateLeft.bind(this);
         this.rotateRight = this.rotateRight.bind(this);
@@ -79,14 +76,19 @@ export default class PlayerTest extends Component {
                 <div>
                     Current player: Player {this.props.currentPlayer}
                 </div>
-                <button onClick={() => this.props.onPlayerChange(1, "blue")}>Player 1</button>
-                <button onClick={() => this.props.onPlayerChange(2, "orange")}>Player 2</button>
-                <button onClick={() => this.props.onPlayerChange(3, "green")}>Player 3</button>
-                <button onClick={() => this.props.onPlayerChange(4, "purple")}>Player 4</button>
+                <button onClick={() => this.props.onPlayerChange(1)}>Player 1</button>
+                <button onClick={() => this.props.onPlayerChange(2)}>Player 2</button>
+                <button onClick={() => this.props.onPlayerChange(3)}>Player 3</button>
+                <button onClick={() => this.props.onPlayerChange(4)}>Player 4</button>
                 <div>
                     Polyomino Controls
                 </div>
-                <button onClick={this.getTestPolyo}>Get Test Polyomino</button>
+                <PolyominoPreview 
+                    currentPlayer={this.props.currentPlayer}
+                    currentPolyo={this.props.currentPolyo}
+                    boardX={5} 
+                    boardY={5} />
+                <button onClick={this.getTestPolyo}>Get Random Polyomino</button>
                 <MdRotateLeft data-tip="Rotate Counterclockwise" onClick={this.rotateLeft} />
                 <MdRotateRight data-tip="Rotate Clockwise" onClick={this.rotateRight} />
                 <FlipX data-tip="Flip Horizontally" onClick={this.flipX} />

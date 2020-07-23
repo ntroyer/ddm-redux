@@ -32,11 +32,13 @@ export default class Board extends Component {
     }
 
     assignSquaresToPlayer(player) {
-        console.log('we are now assigning squares for player ', player);
         let currentPlayerSquares = this.state.playerSquares;
+
         this.state.currentComputedPolyo.map((item) => {
             currentPlayerSquares[item[0] + ',' + item[1]] = player;
+            return true;
         });
+        
         this.setState(state => ({
             playerSquares: currentPlayerSquares
         }));

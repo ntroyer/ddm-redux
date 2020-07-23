@@ -25,10 +25,9 @@ export default class NewGame extends Component {
         this.changePolyo = this.changePolyo.bind(this);
     }
 
-    changePlayer(player, color) {
+    changePlayer(player) {
         this.setState(state => ({
-            currentPlayer: player,
-            currentPlayerColor: color
+            currentPlayer: player
         }));
     }
 
@@ -49,7 +48,6 @@ export default class NewGame extends Component {
                 />
                 <Board 
                     currentPlayer={this.state.currentPlayer}
-                    currentPlayerColor={this.state.currentPlayerColor}
                     currentPolyo={this.state.currentPolyo}
                     boardX={19}
                     boardY={19}
