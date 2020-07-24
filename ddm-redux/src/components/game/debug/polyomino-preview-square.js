@@ -4,8 +4,8 @@ import styled from 'styled-components';
 const PreviewSquare = styled.div`
     background: ${props => (props.isAssigned ? props.currentPlayerColor : "white")};
     font-weight: bold;
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
     padding: 0;
     text-align: center;
     outline: 2px solid black;

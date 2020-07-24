@@ -5,8 +5,8 @@ import PolyominoPreviewSquare from './polyomino-preview-square';
 
 const BoardGrid = styled.div`
     display: grid;
-    width: ${props => (props.boardX)}00px;
-    height: ${props => (props.boardY)}00px;
+    width: ${props => (props.boardX)} * 80px;
+    height: ${props => (props.boardY)} * 80px;
     grid-template-columns: repeat(${props => (props.boardX)}, auto);
 `;
 
@@ -35,8 +35,10 @@ export default class PolyominoPreview extends Component {
     renderSquare(row, col) {
         row = row-2;
         col = col-2;
+        const key = row + "," + col;
         return (
-            <PolyominoPreviewSquare 
+            <PolyominoPreviewSquare
+                key={key}
                 row={row}
                 col={col}
                 currentPlayer={this.props.currentPlayer}

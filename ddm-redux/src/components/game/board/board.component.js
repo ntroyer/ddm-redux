@@ -38,7 +38,7 @@ export default class Board extends Component {
             currentPlayerSquares[item[0] + ',' + item[1]] = player;
             return true;
         });
-        
+
         this.setState(state => ({
             playerSquares: currentPlayerSquares
         }));
@@ -70,8 +70,10 @@ export default class Board extends Component {
     }
 
     renderSquare(row, col) {
+        const key = row + ',' + col;
         return (
             <Square 
+                key={key}
                 row={row}
                 col={col}
                 currentPlayer={this.props.currentPlayer}
