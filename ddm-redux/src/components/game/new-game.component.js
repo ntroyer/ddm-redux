@@ -6,6 +6,7 @@ import PlayerTest from "./debug/player-test.component";
 
 const Game = styled.div`
     display: flex;
+    gap: 10px;
     justify-content: center;
 `;
 

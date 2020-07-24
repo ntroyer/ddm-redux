@@ -22,9 +22,6 @@ const PreviewSquare = styled.div`
 
 
 export default class PolyominoPreviewSquare extends Component {
-    constructor(props) {
-        super(props);
-    }
 
     getPlayerColor(player) {
         switch(player) {

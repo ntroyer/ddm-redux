@@ -4,8 +4,8 @@ import Square from './square.component';
 
 const BoardGrid = styled.div`
     display: grid;
-    width: ${props => (props.boardX)}00px;
-    height: ${props => (props.boardY)}00px;
+    width: ${props => (props.boardX)} * 100px;
+    height: ${props => (props.boardY)} * 100px;
     grid-template-columns: repeat(${props => (props.boardX)}, auto);
 `;
 

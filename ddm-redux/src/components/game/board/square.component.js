@@ -22,14 +22,6 @@ const BoardSquare = styled.div`
 
 
 export default class Square extends Component {
-    constructor(props) {
-        super(props);
-        
-        this.state = {}
-
-        this.getPlayerColor = this.getPlayerColor.bind(this);
-    }
-
     // todo - really wish I could make this scalable for X players instead of just 4
     getPlayerColor(player) {
         switch(player) {

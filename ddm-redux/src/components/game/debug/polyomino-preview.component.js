@@ -11,10 +11,6 @@ const BoardGrid = styled.div`
 `;
 
 export default class PolyominoPreview extends Component {
-    constructor(props) {
-        super(props);
-    }
-
     isSquareInCurrentPolyo(row, col) {
         if (row === 0 && col === 0) {
             return true;
