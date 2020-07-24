@@ -24,7 +24,6 @@ export default class Board extends Component {
     }
 
     setCurrentCenter(row, col) {
-        // todo - when the mouse comes off the grid at its edges, the polyo should be removed
         this.setState(state => ({
             currentComputedPolyo: this.computePolyoCoords(row, col)
         }));
@@ -50,8 +49,7 @@ export default class Board extends Component {
     }
 
     getSquareAssignment(row, col) {
-        let rowColKey = row + ',' + col;
-
+        const rowColKey = row + ',' + col;
         if (this.state.playerSquares[rowColKey] && this.state.playerSquares[rowColKey] !== 'undefined') {
             return this.state.playerSquares[rowColKey];
         }
@@ -80,9 +78,16 @@ export default class Board extends Component {
         );
     }
 
+    onMouseLeave() {
+        this.setState(state => ({
+            currentComputedPolyo: [-1, -1]
+        }))
+    }
+
     render() {
         return (
             <BoardGrid 
+                onMouseLeave={() => this.onMouseLeave()}
                 boardX={this.props.boardX} 
                 boardY={this.props.boardY}
                 squareWidth={process.env.REACT_APP_BOARD_SQUARE_WIDTH}
