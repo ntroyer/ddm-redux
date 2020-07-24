@@ -3,12 +3,11 @@ import styled from 'styled-components';
 
 const BoardSquare = styled.div`
     background: ${props => (props.assignedPlayerColor)};
-    font-weight: bold;
     width: ${props => (props.squareWidth)}px;
     height: ${props => (props.squareHeight)}px;
-    padding: 0;
     text-align: center;
     outline: 2px solid black;
+    cursor: pointer;
 
     &.is-being-checked {
         border-color: ${props => (props.currentPlayerColor)};
@@ -47,7 +46,10 @@ export default class Square extends Component {
                 assignedPlayerColor={() => this.getPlayerColor(this.props.assignedPlayer)}
                 className={this.props.isBeingChecked ? "is-being-checked" : ""}
                 onMouseEnter={() => this.props.onSetCurrentCenter(this.props.row, this.props.col)}
-                onClick={() => this.props.assignSquaresToPlayer(this.props.player, this.props.row, this.props.col)} />
+                onClick={() => this.props.assignSquaresToPlayer(this.props.player, this.props.row, this.props.col)}
+                >
+                {this.props.row}, {this.props.col}        
+            </BoardSquare>
         )
     }
 }

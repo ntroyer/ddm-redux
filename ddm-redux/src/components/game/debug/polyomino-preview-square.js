@@ -2,11 +2,9 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 
 const PreviewSquare = styled.div`
-    background: ${props => (props.isAssigned ? props.currentPlayerColor : "white")};
-    font-weight: bold;
     width: ${props => (props.squareWidth)}px;
     height: ${props => (props.squareHeight)}px;
-    padding: 0;
+    background: ${props => (props.isAssigned ? props.currentPlayerColor : "white")};
     text-align: center;
     outline: 2px solid black;
 

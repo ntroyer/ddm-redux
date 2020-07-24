@@ -5,8 +5,25 @@ import ReactTooltip from "react-tooltip";
 import PolyominoPreview from './polyomino-preview.component';
 import PolyominoSelector from './polyomino-selector';
 
+const RotateLeft = styled(MdRotateLeft)`
+    cursor: pointer;
+`;
+
+const RotateRight = styled(MdRotateRight)`
+    cursor: pointer;
+`;
+
 const FlipX = styled(MdFlip)`
     rotate: 90deg;
+    cursor: pointer;
+`;
+
+const FlipY = styled(MdFlip)`
+    cursor: pointer;
+`;
+
+const PolyominoSelectorContainer = styled.div`
+    display: flex;
 `;
 
 export default class PlayerTest extends Component {
@@ -85,12 +102,14 @@ export default class PlayerTest extends Component {
                     currentPolyo={this.props.currentPolyo}
                     boardX={5} 
                     boardY={5} />
-                <PolyominoSelector />
+                <PolyominoSelectorContainer>
+                    <PolyominoSelector />
+                </PolyominoSelectorContainer>
                 <button>Get Random Polyomino</button>
-                <MdRotateLeft data-tip="Rotate Counterclockwise" onClick={this.rotateLeft} />
-                <MdRotateRight data-tip="Rotate Clockwise" onClick={this.rotateRight} />
+                <RotateLeft data-tip="Rotate Counterclockwise" onClick={this.rotateLeft} />
+                <RotateRight data-tip="Rotate Clockwise" onClick={this.rotateRight} />
                 <FlipX data-tip="Flip Horizontally" onClick={this.flipX} />
-                <MdFlip data-tip="Flip Vertically" onClick={this.flipY} />
+                <FlipY data-tip="Flip Vertically" onClick={this.flipY} />
                 <ReactTooltip />
             </div>
         )
