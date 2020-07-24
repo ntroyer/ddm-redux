@@ -5,23 +5,22 @@ import PolyominoPreviewSquare from './polyomino-preview-square';
 
 const BoardGrid = styled.div`
     display: grid;
-    width: ${props => (props.boardX)} * 80px;
-    height: ${props => (props.boardY)} * 80px;
+    width: ${props => (props.boardX)} * 60px;
+    height: ${props => (props.boardY)} * 60px;
     grid-template-columns: repeat(${props => (props.boardX)}, auto);
 `;
 
 export default class PolyominoPreview extends Component {
     isSquareInCurrentPolyo(row, col) {
-        if (row === 0 && col === 0) {
+        if (this.isSquareCenter(row, col)) {
             return true;
         }
 
-        return Array.isArray(this.props.currentPolyo.find((item) => {
-            if (item[0] === row && item[1] === col) {
-                return true;
-            }
-            return false;
-        }));
+        return Array.isArray(
+            this.props.currentPolyo.find(
+                (item) => (item[0] === row && item[1] === col)
+            )
+        );
     }
 
     isSquareCenter(row, col) {

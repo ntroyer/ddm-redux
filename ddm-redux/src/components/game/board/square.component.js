@@ -4,8 +4,8 @@ import styled from 'styled-components';
 const BoardSquare = styled.div`
     background: ${props => (props.assignedPlayerColor)};
     font-weight: bold;
-    width: 100px;
-    height: 100px;
+    width: ${props => (props.squareWidth)}px;
+    height: ${props => (props.squareHeight)}px;
     padding: 0;
     text-align: center;
     outline: 2px solid black;
@@ -41,6 +41,8 @@ export default class Square extends Component {
     render() {
         return(
             <BoardSquare
+                squareWidth={process.env.REACT_APP_BOARD_SQUARE_WIDTH}
+                squareHeight={process.env.REACT_APP_BOARD_SQUARE_HEIGHT}
                 currentPlayerColor={() => this.getPlayerColor(this.props.currentPlayer)}
                 assignedPlayerColor={() => this.getPlayerColor(this.props.assignedPlayer)}
                 className={this.props.isBeingChecked ? "is-being-checked" : ""}

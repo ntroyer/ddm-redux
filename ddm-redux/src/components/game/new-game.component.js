@@ -16,7 +16,6 @@ export default class NewGame extends Component {
 
         this.state = {
             currentPlayer: 1,
-            currentPlayerColor: "blue",
             currentPolyo: [
                 [-1, 0], [-1, -1], [1, 0], [0, 1], [0, 2]
             ]

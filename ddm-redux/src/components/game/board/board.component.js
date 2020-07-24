@@ -4,8 +4,8 @@ import Square from './square.component';
 
 const BoardGrid = styled.div`
     display: grid;
-    width: ${props => (props.boardX)} * 100px;
-    height: ${props => (props.boardY)} * 100px;
+    width: ${props => (props.boardX)} * ${props => (props.squareWidth)}px;
+    height: ${props => (props.boardY)} * ${props => (props.squareHeight)}px;
     grid-template-columns: repeat(${props => (props.boardX)}, auto);
 `;
 
@@ -25,7 +25,6 @@ export default class Board extends Component {
 
     setCurrentCenter(row, col) {
         // todo - when the mouse comes off the grid at its edges, the polyo should be removed
-
         this.setState(state => ({
             currentComputedPolyo: this.computePolyoCoords(row, col)
         }));
@@ -61,12 +60,8 @@ export default class Board extends Component {
     }
 
     isSquareBeingChecked(row, col) {
-        let stringifiedCoords = JSON.stringify([row, col]);
-
-        if (this.state.currentComputedPolyo.some(item => JSON.stringify(item) === stringifiedCoords)) {
-            return true;
-        }
-        return false;
+        const stringifiedCoords = JSON.stringify([row, col]);
+        return (this.state.currentComputedPolyo.some(item => (JSON.stringify(item) === stringifiedCoords)));
     }
 
     renderSquare(row, col) {
@@ -87,7 +82,11 @@ export default class Board extends Component {
 
     render() {
         return (
-            <BoardGrid boardX={this.props.boardX} boardY={this.props.boardY}>
+            <BoardGrid 
+                boardX={this.props.boardX} 
+                boardY={this.props.boardY}
+                squareWidth={process.env.REACT_APP_BOARD_SQUARE_WIDTH}
+                squareHeight={process.env.REACT_APP_BOARD_SQUARE_HEIGHT}>
                 {
                     [...Array(this.props.boardY)].map((_, i) => (  
                         [...Array(this.props.boardX)].map((_, j) => this.renderSquare(i, j))  

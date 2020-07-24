@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { MdRotateLeft, MdRotateRight, MdFlip } from 'react-icons/md';
 import ReactTooltip from "react-tooltip";
 import PolyominoPreview from './polyomino-preview.component';
+import PolyominoSelector from './polyomino-selector';
 
 const FlipX = styled(MdFlip)`
     rotate: 90deg;
@@ -66,10 +67,6 @@ export default class PlayerTest extends Component {
         this.props.onPolyoChange(newPolyo);
     }
 
-    getTestPolyo() {
-        
-    }
- 
     render() {
         return (
             <div>
@@ -88,7 +85,8 @@ export default class PlayerTest extends Component {
                     currentPolyo={this.props.currentPolyo}
                     boardX={5} 
                     boardY={5} />
-                <button onClick={this.getTestPolyo}>Get Random Polyomino</button>
+                <PolyominoSelector />
+                <button>Get Random Polyomino</button>
                 <MdRotateLeft data-tip="Rotate Counterclockwise" onClick={this.rotateLeft} />
                 <MdRotateRight data-tip="Rotate Clockwise" onClick={this.rotateRight} />
                 <FlipX data-tip="Flip Horizontally" onClick={this.flipX} />

@@ -4,8 +4,8 @@ import styled from 'styled-components';
 const PreviewSquare = styled.div`
     background: ${props => (props.isAssigned ? props.currentPlayerColor : "white")};
     font-weight: bold;
-    width: 80px;
-    height: 80px;
+    width: ${props => (props.squareWidth)}px;
+    height: ${props => (props.squareHeight)}px;
     padding: 0;
     text-align: center;
     outline: 2px solid black;
@@ -41,6 +41,8 @@ export default class PolyominoPreviewSquare extends Component {
     render() {
         return (
             <PreviewSquare 
+                squareWidth={process.env.REACT_APP_PREVIEW_SQUARE_WIDTH}
+                squareHeight={process.env.REACT_APP_PREVIEW_SQUARE_HEIGHT}
                 className={this.props.isCenter ? "is-center" : ""}
                 currentPlayerColor={this.getPlayerColor(this.props.currentPlayer)}
                 isAssigned={this.props.isAssigned} />
