@@ -103,7 +103,9 @@ export default class PlayerTest extends Component {
                     boardX={5} 
                     boardY={5} />
                 <PolyominoSelectorContainer>
-                    <PolyominoSelector />
+                    <PolyominoSelector 
+                        currentPlayer={this.props.currentPlayer}
+                        onPolyoChange={this.props.onPolyoChange} />
                 </PolyominoSelectorContainer>
                 <button>Get Random Polyomino</button>
                 <RotateLeft data-tip="Rotate Counterclockwise" onClick={this.rotateLeft} />

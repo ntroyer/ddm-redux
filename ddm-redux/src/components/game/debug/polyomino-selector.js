@@ -27,7 +27,7 @@ export default class PolyominoSelector extends Component {
                     [-1, -1],
                     [-1, 0],
                     [-1, 1],
-                    [1, 0]
+                    [1, 0],
                     [2, 0]
                 ],
                 [
@@ -43,26 +43,29 @@ export default class PolyominoSelector extends Component {
                     [1, 0],
                     [2, 0],
                     [2, 1]
-                ],
-                [],
-                [],
-                [],
-                []
+                ]
             ]
         }
     }
 
+    setCurrentPolyomino(polyo) {
+        console.log('setting current polyomino...', polyo);
+        this.props.onPolyoChange(polyo);
+    }
+
     render() {
         return (
-                <SelectorDiv>
+            <SelectorDiv>
                 {
                     this.state.polyominos.map((polyo) => (
                         <SelectablePolyomino 
+                            setCurrentPolyomino={() => this.setCurrentPolyomino(polyo)}
+                            currentPlayer={this.props.currentPlayer}
                             polyomino={polyo}
                         />
                     ))
                 }
-                </SelectorDiv>
+            </SelectorDiv>
         );
     }
 }

@@ -32,6 +32,7 @@ export default class NewGame extends Component {
     }
 
     changePolyo(polyo) {
+        console.log('changing the polyomino...');
         this.setState(state => ({
             currentPolyo: polyo
         }));
