@@ -5,8 +5,6 @@ import PolyominoPreviewSquare from './polyomino-preview-square';
 
 const BoardGrid = styled.div`
     display: grid;
-    width: ${props => (props.boardX)} * 60px;
-    height: ${props => (props.boardY)} * 60px;
     grid-template-columns: repeat(${props => (props.boardX)}, auto);
 `;
 

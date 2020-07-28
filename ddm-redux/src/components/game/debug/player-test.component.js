@@ -24,6 +24,7 @@ const FlipY = styled(MdFlip)`
 
 const PolyominoSelectorContainer = styled.div`
     display: flex;
+    padding-top: 10px;
 `;
 
 export default class PlayerTest extends Component {
