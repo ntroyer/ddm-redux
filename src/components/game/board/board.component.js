@@ -2,14 +2,10 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import Square from './square.component';
 
-const BoardGrid = styled.div`
-    display: grid;
-    grid-template-columns: repeat(${props => (props.boardX)}, auto);
-`;
+const BoardGrid = styled.table``;
 
 export default class Board extends Component {
     // as a general rule of thumb, if you are inclined to add a variable to a square, add it to the board instead
-    // todo - add an array that keeps track of what squares each player is assigned to.
     constructor(props) {
         super();
 
@@ -76,6 +72,16 @@ export default class Board extends Component {
         );
     }
 
+    renderRow(row) {
+        return (
+            <tr>
+            {
+                [...Array(this.props.boardX)].map((_, j) => this.renderSquare(row, j))
+            }
+            </tr>
+        );
+    }
+
     onMouseLeave() {
         this.setState(state => ({
             currentComputedPolyo: [-1, -1]
@@ -91,9 +97,7 @@ export default class Board extends Component {
                 squareWidth={process.env.REACT_APP_BOARD_SQUARE_WIDTH}
                 squareHeight={process.env.REACT_APP_BOARD_SQUARE_HEIGHT}>
                 {
-                    [...Array(this.props.boardY)].map((_, i) => (  
-                        [...Array(this.props.boardX)].map((_, j) => this.renderSquare(i, j))  
-                    ))
+                    [...Array(this.props.boardY)].map((_, i) => this.renderRow(i))
                 }
             </BoardGrid>
         )

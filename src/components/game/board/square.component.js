@@ -1,21 +1,18 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 
-const BoardSquare = styled.div`
+const BoardSquare = styled.td`
     background: ${props => (props.assignedPlayerColor)};
     width: ${props => (props.squareWidth)}px;
     height: ${props => (props.squareHeight)}px;
     text-align: center;
-    outline: 2px solid black;
+    border: 2px solid black;
     cursor: pointer;
 
     &.is-being-checked {
-        border-color: ${props => (props.currentPlayerColor)};
-        border-style: dashed;
-        border-top-width: 5px;
-        border-left-width: 5px;
-        border-right-width: 5px;
-        border-bottom-width: 5px;
+        outline-color: ${props => (props.currentPlayerColor)};
+        outline-style: dashed;
+        outline-width: 5px;
     }
 `;
 
