@@ -73,8 +73,9 @@ export default class Board extends Component {
     }
 
     renderRow(row) {
+        const key = 'row' + row;
         return (
-            <tr>
+            <tr key={key}>
             {
                 [...Array(this.props.boardX)].map((_, column) => this.renderSquare(row, column))
             }
@@ -92,6 +93,7 @@ export default class Board extends Component {
         return (
             <table>
                 <BoardGrid 
+                    name="GameGrid"
                     onMouseLeave={() => this.onMouseLeave()}
                     boardX={this.props.boardX} 
                     boardY={this.props.boardY}
