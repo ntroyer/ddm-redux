@@ -8,7 +8,7 @@ const BoardTable = styled.table`
 
 export default class Board extends Component {
     // as a general rule of thumb, if you are inclined to add a variable to a square, add it to the board instead
-    
+
     constructor(props) {
         super();
 
@@ -86,7 +86,7 @@ export default class Board extends Component {
         );
     }
 
-    onMouseLeave() {
+    resetCurrentPolyo() {
         this.setState(state => ({
             currentComputedPolyo: [-1, -1]
         }))
@@ -95,13 +95,7 @@ export default class Board extends Component {
     render() {
         return (
             <BoardTable>
-                <tbody 
-                    name="GameGrid"
-                    onMouseLeave={() => this.onMouseLeave()}
-                    boardX={this.props.boardX} 
-                    boardY={this.props.boardY}
-                    squareWidth={process.env.REACT_APP_BOARD_SQUARE_WIDTH}
-                    squareHeight={process.env.REACT_APP_BOARD_SQUARE_HEIGHT}>
+                <tbody onMouseLeave={() => this.resetCurrentPolyo()}>
                     {
                         [...Array(this.props.boardY)].map((_, row) => this.renderRow(row))
                     }
