@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import Square from './square.component';
 
-const BoardGrid = styled.table``;
+const BoardGrid = styled.tbody``;
 
 export default class Board extends Component {
     // as a general rule of thumb, if you are inclined to add a variable to a square, add it to the board instead
@@ -57,7 +57,7 @@ export default class Board extends Component {
     }
 
     renderSquare(row, col) {
-        const key = row + ',' + col;
+        const key = 'square' + row + col;
         return (
             <Square 
                 key={key}
@@ -76,7 +76,7 @@ export default class Board extends Component {
         return (
             <tr>
             {
-                [...Array(this.props.boardX)].map((_, j) => this.renderSquare(row, j))
+                [...Array(this.props.boardX)].map((_, column) => this.renderSquare(row, column))
             }
             </tr>
         );
@@ -90,16 +90,18 @@ export default class Board extends Component {
 
     render() {
         return (
-            <BoardGrid 
-                onMouseLeave={() => this.onMouseLeave()}
-                boardX={this.props.boardX} 
-                boardY={this.props.boardY}
-                squareWidth={process.env.REACT_APP_BOARD_SQUARE_WIDTH}
-                squareHeight={process.env.REACT_APP_BOARD_SQUARE_HEIGHT}>
-                {
-                    [...Array(this.props.boardY)].map((_, i) => this.renderRow(i))
-                }
-            </BoardGrid>
+            <table>
+                <BoardGrid 
+                    onMouseLeave={() => this.onMouseLeave()}
+                    boardX={this.props.boardX} 
+                    boardY={this.props.boardY}
+                    squareWidth={process.env.REACT_APP_BOARD_SQUARE_WIDTH}
+                    squareHeight={process.env.REACT_APP_BOARD_SQUARE_HEIGHT}>
+                    {
+                        [...Array(this.props.boardY)].map((_, row) => this.renderRow(row))
+                    }
+                </BoardGrid>
+            </table>
         )
     }
 }
