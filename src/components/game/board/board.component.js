@@ -2,14 +2,10 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import Square from './square.component';
 
-const BoardGrid = styled.div`
-    display: grid;
-    grid-template-columns: repeat(${props => (props.boardX)}, auto);
-`;
+const BoardGrid = styled.tbody``;
 
 export default class Board extends Component {
     // as a general rule of thumb, if you are inclined to add a variable to a square, add it to the board instead
-    // todo - add an array that keeps track of what squares each player is assigned to.
     constructor(props) {
         super();
 
@@ -61,7 +57,7 @@ export default class Board extends Component {
     }
 
     renderSquare(row, col) {
-        const key = row + ',' + col;
+        const key = 'square' + row + col;
         return (
             <Square 
                 key={key}
@@ -76,6 +72,17 @@ export default class Board extends Component {
         );
     }
 
+    renderRow(row) {
+        const key = 'row' + row;
+        return (
+            <tr key={key}>
+            {
+                [...Array(this.props.boardX)].map((_, column) => this.renderSquare(row, column))
+            }
+            </tr>
+        );
+    }
+
     onMouseLeave() {
         this.setState(state => ({
             currentComputedPolyo: [-1, -1]
@@ -84,18 +91,19 @@ export default class Board extends Component {
 
     render() {
         return (
-            <BoardGrid 
-                onMouseLeave={() => this.onMouseLeave()}
-                boardX={this.props.boardX} 
-                boardY={this.props.boardY}
-                squareWidth={process.env.REACT_APP_BOARD_SQUARE_WIDTH}
-                squareHeight={process.env.REACT_APP_BOARD_SQUARE_HEIGHT}>
-                {
-                    [...Array(this.props.boardY)].map((_, i) => (  
-                        [...Array(this.props.boardX)].map((_, j) => this.renderSquare(i, j))  
-                    ))
-                }
-            </BoardGrid>
+            <table>
+                <BoardGrid 
+                    name="GameGrid"
+                    onMouseLeave={() => this.onMouseLeave()}
+                    boardX={this.props.boardX} 
+                    boardY={this.props.boardY}
+                    squareWidth={process.env.REACT_APP_BOARD_SQUARE_WIDTH}
+                    squareHeight={process.env.REACT_APP_BOARD_SQUARE_HEIGHT}>
+                    {
+                        [...Array(this.props.boardY)].map((_, row) => this.renderRow(row))
+                    }
+                </BoardGrid>
+            </table>
         )
     }
 }
