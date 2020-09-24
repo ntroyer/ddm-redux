@@ -7,7 +7,7 @@ import NewGame from "./components/game/new-game.component";
 function App() {
   return (
     <Router>
-      <Route path="/newgame" component={NewGame} />
+      <Route path="/" component={NewGame} />
     </Router>
   );
 }
