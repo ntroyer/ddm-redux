@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import { MdRotateLeft, MdRotateRight, MdFlip } from 'react-icons/md';
 import ReactTooltip from "react-tooltip";
-import PolyominoPreview from './polyomino-preview.component';
-import PolyominoSelector from './polyomino-selector';
+import PolyominoPreview from './polyomino-preview/polyomino-preview.component';
+import PolyominoSelector from './polyomino-selector/polyomino-selector';
 
 const RotateLeft = styled(MdRotateLeft)`
     cursor: pointer;
