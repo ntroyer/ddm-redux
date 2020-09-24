@@ -12,7 +12,7 @@ const Game = styled.div`
 
 export default class NewGame extends Component {
     constructor(props) {
-        super(props);
+        super();
 
         this.state = {
             currentPlayer: 1,

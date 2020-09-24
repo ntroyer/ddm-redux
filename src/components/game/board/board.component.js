@@ -11,7 +11,7 @@ export default class Board extends Component {
     // as a general rule of thumb, if you are inclined to add a variable to a square, add it to the board instead
     // todo - add an array that keeps track of what squares each player is assigned to.
     constructor(props) {
-        super(props);
+        super();
 
         this.state = {
             currentComputedPolyo: [-1, -1],

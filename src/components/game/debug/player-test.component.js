@@ -29,7 +29,7 @@ const PolyominoSelectorContainer = styled.div`
 
 export default class PlayerTest extends Component {
     constructor(props) {
-        super(props);
+        super();
 
         this.rotateLeft = this.rotateLeft.bind(this);
         this.rotateRight = this.rotateRight.bind(this);

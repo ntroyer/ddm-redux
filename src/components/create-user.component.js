@@ -3,7 +3,7 @@ import axios from 'axios';
 
 export default class CreateUser extends Component {
     constructor(props) {
-        super(props);
+        super();
 
         this.onChangeUsername = this.onChangeUsername.bind(this);
         this.onSubmit = this.onSubmit.bind(this);

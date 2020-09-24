@@ -12,7 +12,7 @@ const SelectorDiv = styled.div`
 
 export default class PolyominoSelector extends Component {
     constructor(props) {
-        super(props);
+        super();
 
         this.state = {
             polyominos: [
