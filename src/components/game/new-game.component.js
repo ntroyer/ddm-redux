@@ -49,8 +49,8 @@ export default class NewGame extends Component {
                 <Board 
                     currentPlayer={this.state.currentPlayer}
                     currentPolyo={this.state.currentPolyo}
-                    boardX={19}
-                    boardY={19}
+                    boardX={20}
+                    boardY={20}
                 />
             </Game>
         )
