@@ -2,10 +2,13 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import Square from './square.component';
 
-const BoardGrid = styled.tbody``;
+const BoardTable = styled.table`
+    border-collapse: collapse;
+`;
 
 export default class Board extends Component {
     // as a general rule of thumb, if you are inclined to add a variable to a square, add it to the board instead
+    
     constructor(props) {
         super();
 
@@ -91,8 +94,8 @@ export default class Board extends Component {
 
     render() {
         return (
-            <table>
-                <BoardGrid 
+            <BoardTable>
+                <tbody 
                     name="GameGrid"
                     onMouseLeave={() => this.onMouseLeave()}
                     boardX={this.props.boardX} 
@@ -102,8 +105,8 @@ export default class Board extends Component {
                     {
                         [...Array(this.props.boardY)].map((_, row) => this.renderRow(row))
                     }
-                </BoardGrid>
-            </table>
+                </tbody>
+            </BoardTable>
         )
     }
 }
