@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 
-const SelectablePolyominoBlock = styled.div`
+const SelectablePolyominoBlock = styled.td`
     width: ${props => (props.squareWidth)}px;
     height: ${props => (props.squareHeight)}px;
     background: ${props => (props.isAssigned ? props.currentPlayerColor : "white")};
@@ -9,15 +9,9 @@ const SelectablePolyominoBlock = styled.div`
     border: ${props => (props.isAssigned ? "2px solid black" : "0")};
 `;
 
-const PolyominoGrid = styled.div`
-    display: grid;
+const PolyominoGrid = styled.table`
     width: 100px;
     height: 100px;
-    grid-template-columns: repeat(5,auto);
-`;
-
-const Polyomino = styled.div`
-    flex: 0 0 100px;
 `;
 
 export default class SelectablePolyomino extends Component {
@@ -65,18 +59,26 @@ export default class SelectablePolyomino extends Component {
         );
     }
 
+    renderRow(row) {
+        const key = 'row' + row;
+        return (
+            <tr key={key}>
+            {
+                [...Array(5)].map((_, column) => this.renderSquare(row, column))
+            }
+            </tr>
+        );
+    }
+
     render() {
         return (
-            <Polyomino 
-                onClick={() => this.props.setCurrentPolyomino(this.props.polyomino)}>
-                <PolyominoGrid>
+                <PolyominoGrid onClick={() => this.props.setCurrentPolyomino(this.props.polyomino)}>
+                    <tbody>
                     {
-                        [...Array(5)].map((_, i) => (  
-                            [...Array(5)].map((_, j) => this.renderSquare(i, j))
-                        ))
+                        [...Array(5)].map((_, row) => this.renderRow(row))
                     }
+                    </tbody>
                 </PolyominoGrid>
-            </Polyomino>
         )
     }
 }

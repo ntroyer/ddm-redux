@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import Square from './square.component';
 
-const BoardTable = styled.table`
+const Grid = styled.table`
     border-collapse: collapse;
 `;
 
@@ -94,13 +94,13 @@ export default class Board extends Component {
 
     render() {
         return (
-            <BoardTable>
+            <Grid>
                 <tbody onMouseLeave={() => this.resetCurrentPolyo()}>
                     {
                         [...Array(this.props.boardY)].map((_, row) => this.renderRow(row))
                     }
                 </tbody>
-            </BoardTable>
+            </Grid>
         )
     }
 }
