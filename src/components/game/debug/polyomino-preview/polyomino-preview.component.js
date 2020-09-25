@@ -3,9 +3,8 @@ import styled from 'styled-components';
 
 import PolyominoPreviewSquare from './polyomino-preview-square';
 
-const BoardGrid = styled.div`
-    display: grid;
-    grid-template-columns: repeat(${props => (props.boardX)}, auto);
+const BoardGrid = styled.table`
+    border-collapse: collapse;
 `;
 
 export default class PolyominoPreview extends Component {
@@ -41,14 +40,25 @@ export default class PolyominoPreview extends Component {
         );
     }
 
+    renderRow(row) {
+        const key = 'row' + row;
+        return (
+            <tr key={key}>
+            {
+                [...Array(this.props.boardX)].map((_, column) => this.renderSquare(row, column))
+            }
+            </tr>
+        );
+    }
+
     render() {
         return (
-            <BoardGrid boardX={this.props.boardX} boardY={this.props.boardY}>
+            <BoardGrid>
+                <tbody>
                 {
-                    [...Array(this.props.boardY)].map((_, i) => (  
-                        [...Array(this.props.boardX)].map((_, j) => this.renderSquare(i, j))
-                    ))
+                    [...Array(this.props.boardY)].map((_, row) => this.renderRow(row))
                 }
+                </tbody>
             </BoardGrid>
         )
     }

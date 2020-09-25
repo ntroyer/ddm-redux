@@ -16,34 +16,46 @@ export default class PolyominoSelector extends Component {
 
         this.state = {
             polyominos: [
-                [
-                    [-1, 1],
-                    [0, 1],
-                    [0, -1],
-                    [1, 0],
-                    [2, 0]
-                ],
-                [
-                    [-1, -1],
-                    [-1, 0],
-                    [-1, 1],
-                    [1, 0],
-                    [2, 0]
-                ],
-                [
-                    [-1, -1],
-                    [0, -1],
-                    [1, 0],
-                    [1, 1],
-                    [2, 1]
-                ],
-                [
-                    [-1, -1],
-                    [-1, 0],
-                    [1, 0],
-                    [2, 0],
-                    [2, 1]
-                ]
+                {
+                    name: 'lthing',
+                    data: [
+                        [-1, 1],
+                        [0, 1],
+                        [0, -1],
+                        [1, 0],
+                        [2, 0]
+                    ]
+                },
+                {
+                    name: 'tshape',
+                    data: [
+                        [-1, -1],
+                        [-1, 0],
+                        [-1, 1],
+                        [1, 0],
+                        [2, 0]
+                    ]
+                },
+                {
+                    name: 'stairs',
+                    data: [
+                        [-1, -1],
+                        [0, -1],
+                        [1, 0],
+                        [1, 1],
+                        [2, 1]
+                    ]
+                },
+                {
+                    name: 'doublel',
+                    data: [
+                        [-1, -1],
+                        [-1, 0],
+                        [1, 0],
+                        [2, 0],
+                        [2, 1]
+                    ]
+                }
             ]
         }
     }
@@ -59,9 +71,10 @@ export default class PolyominoSelector extends Component {
                 {
                     this.state.polyominos.map((polyo) => (
                         <SelectablePolyomino 
-                            setCurrentPolyomino={() => this.setCurrentPolyomino(polyo)}
+                            key={'selectable_' + polyo.name}
+                            setCurrentPolyomino={() => this.setCurrentPolyomino(polyo.data)}
                             currentPlayer={this.props.currentPlayer}
-                            polyomino={polyo}
+                            polyomino={polyo.data}
                         />
                     ))
                 }

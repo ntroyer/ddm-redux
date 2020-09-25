@@ -108,11 +108,13 @@ export default class PlayerTest extends Component {
                         currentPlayer={this.props.currentPlayer}
                         onPolyoChange={this.props.onPolyoChange} />
                 </PolyominoSelectorContainer>
-                <button>Get Random Polyomino</button>
-                <RotateLeft data-tip="Rotate Counterclockwise" onClick={this.rotateLeft} />
-                <RotateRight data-tip="Rotate Clockwise" onClick={this.rotateRight} />
-                <FlipX data-tip="Flip Horizontally" onClick={this.flipX} />
-                <FlipY data-tip="Flip Vertically" onClick={this.flipY} />
+                <div>
+                    <button>Get Random Polyomino</button>
+                    <RotateLeft data-tip="Rotate Counterclockwise" onClick={this.rotateLeft} />
+                    <RotateRight data-tip="Rotate Clockwise" onClick={this.rotateRight} />
+                    <FlipX data-tip="Flip Horizontally" onClick={this.flipX} />
+                    <FlipY data-tip="Flip Vertically" onClick={this.flipY} />
+                </div>
                 <ReactTooltip />
             </div>
         )

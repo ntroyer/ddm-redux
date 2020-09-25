@@ -1,20 +1,17 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 
-const PreviewSquare = styled.div`
+const PreviewSquare = styled.td`
     width: ${props => (props.squareWidth)}px;
     height: ${props => (props.squareHeight)}px;
     background: ${props => (props.isAssigned ? props.currentPlayerColor : "white")};
     text-align: center;
-    outline: 2px solid black;
+    border: 2px solid black;
 
     &.is-center {
-        border-color: red;
-        border-style: dashed;
-        border-top-width: 5px;
-        border-left-width: 5px;
-        border-right-width: 5px;
-        border-bottom-width: 5px;
+        outline-color: red;
+        outline-style: dashed;
+        outline-width: 5px;
     }
 `;
 
